@@ -6,7 +6,7 @@ compChoice = random.randint(1, 3)
 #     2 = PAPER
 #     3 = SCISSORS
 
-humChoice = input("Make a choice (rock, paper, scissors): ")
+humChoice = input("Make a choice (rock, paper, scissors): ").lower()
 
 if compChoice == 1 and humChoice == "rock":
     print("You both chose rock and tied!")
