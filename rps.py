@@ -24,5 +24,9 @@ elif compChoice == 3 and humChoice == "rock":
     print("You win! Rock beats scissors!")
 elif compChoice == 3 and humChoice == "paper":
     print("You lost! Scissors beats paper!")
-else:
+elif compChoice == 3 and humChoice == "scissors":
     print("You both chose scissors and tied!")
+elif humChoice == "dynamite":
+    print("Dynamite beats everything! You win!")
+else:
+    print("That's not an option!")
