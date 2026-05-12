@@ -5,24 +5,33 @@
 import random
 
 def rps():
+
+    MOVES = {"rock": 0, "paper": 1, "scissors": 2, "dynamite": 3,
+             "r": 0, "p": 1, "s": 2, "d": 3}
+
     playAgain = True
     while playAgain:
-        compChoice = random.choice(["rock", "paper", "scissors"])
+        compChoice = random.randint(0, 2)
 
         validChoice = False
+        for _ in range(50):
+            print("")
+            
         while not validChoice:
             print("")
             print("Make a choice (rock, paper, scissors)")
             print("")
             humChoice = input(" --> ").lower()
-            if humChoice in ["rock", "paper", "scissors", "dynamite", "r", "p", "s", "d"]:
+            if humChoice in MOVES.keys():
                 validChoice = True
             else:
                 print("")
                 print("That's not an option - try again!")
                 print("")
 
-            determineWinner(humChoice, compChoice)
+        humChoice = MOVES[humChoice]
+
+        determineWinner(humChoice, compChoice)
 
         print("")
         print("Would you like to play another game or rock, paper, scissors? (yes/no)")
@@ -36,26 +45,26 @@ def rps():
 
 
 def determineWinner(hChoice, cChoice):
-    if cChoice == "rock" and hChoice == "rock":
-        print("You both chose rock and tied!")
-    elif cChoice == "rock" and hChoice == "paper":
-        print("You won! Paper beats rock!")
-    elif cChoice == "rock" and hChoice == "scissors":
-        print("Sorry, you lost! Rock beats scissors!")
-    elif cChoice == "paper" and hChoice == "rock":
-        print("Sorry, you lost! Paper beats rock!")
-    elif cChoice == "paper" and hChoice == "paper":
-        print("You both chose paper and tied!")
-    elif cChoice == "paper" and hChoice == "scissors":
-        print("You won! Scissors beats paper!")
-    elif cChoice == "scissors" and hChoice == "rock":
-        print("You win! Rock beats scissors!")
-    elif cChoice == "scissors" and hChoice == "paper":
-        print("You lost! Scissors beats paper!")
-    elif cChoice == "scissors" and hChoice == "scissors":
-        print("You both chose scissors and tied!")
-    elif hChoice == "dynamite":
-        print("Dynamite beats everything! You win!")
+    MOVES_R = {0: "rock", 1: "paper", 2: "scissors", 3: "dynamite"}
+    if hChoice == 3:
+        outcome = 1
+    else:
+        outcome = ((hChoice - cChoice + 1) % 3) - 1
+        # x % y --> x - (y * floor(x/y))
+
+    if outcome > 0:
+        print("")
+        print(f"{MOVES_R[hChoice]} beats {MOVES_R[cChoice]}! You beat the computer!")
+        print("")
+    elif outcome == 0:
+        print("")
+        print(f"You tied the computer! You both chose {MOVES_R[hChoice]}!")
+        print("")
+    else:
+        print("")
+        print(f"{MOVES_R[cChoice]} beats {MOVES_R[hChoice]}! The computer beat you!")
+        print("")
+
 
 
 
@@ -66,6 +75,8 @@ def determineWinner(hChoice, cChoice):
 def main():
     appOn = True
     while appOn:
+        for _ in range(50):
+            print("")
         print("")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("              MAIN MENU")
@@ -73,6 +84,14 @@ def main():
         print("")
         print("1. Rock, Paper, Scissors")
         print("2. Quit")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
+        print("")
         print("")
         print("")
         userChoice = input(" --> ").lower()
